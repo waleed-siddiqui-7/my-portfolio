@@ -53,7 +53,7 @@ function App() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
           <a href="#home" className="flex items-center gap-3">
             <span className="text-3xl font-black text-blue-500">WS</span>
-            <span className="text-lg font-bold">Waleed Siddiqui</span>
+            <span className="text-lg font-bold">Wania Sheik</span>
           </a>
 
           <div className="hidden items-center gap-7 md:flex">
@@ -114,9 +114,9 @@ function App() {
             </span>
 
             <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-              Waleed
+              Wania
               <span className="block bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                Siddiqui
+                Sheik
               </span>
             </h1>
 
