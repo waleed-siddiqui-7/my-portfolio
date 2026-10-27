@@ -1,50 +1,99 @@
-
+import { useEffect } from "react";
 import { useState } from "react";
+import { Faq } from "./api/skill";
+import { Navlink } from "./api/navlinks";
+import { projectapi } from "./api/project";
+// const skills = [
+//   { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"] },
+//   { title: "Backend", items: ["Node.js", "Express.js", "Python", "FastAPI"] },
+//   { title: "Database", items: ["MySQL", "PostgreSQL", "SQL"] },
+//   { title: "Tools", items: ["Git", "GitHub", "VS Code", "REST APIs"] },
+// ];
 
-const skills = [
-  { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"] },
-  { title: "Backend", items: ["Node.js", "Express.js", "Python", "FastAPI"] },
-  { title: "Database", items: ["MySQL", "PostgreSQL", "SQL"] },
-  { title: "Tools", items: ["Git", "GitHub", "VS Code", "REST APIs"] },
-];
 
-const projects = [
-  {
-    number: "01",
-    title: "LMS Dashboard",
-    description:
-      "A learning management dashboard with course navigation, assignments, quizzes, and student progress.",
-    tech: ["React", "Tailwind CSS"],
-    link: "#contact",
-  },
-  {
-    number: "02",
-    title: "Users REST API",
-    description:
-      "A backend API with user registration, login, JWT authentication, validation, and database integration.",
-    tech: ["Node.js", "Express", "MySQL"],
-    link: "#contact",
-  },
-  {
-    number: "03",
-    title: "Product Management API",
-    description:
-      "A structured REST API for creating, retrieving, and managing products with database queries.",
-    tech: ["Express", "MySQL", "REST API"],
-    link: "#contact",
-  },
-];
+
+
+
+// const projects = [
+//   {
+//     number: "01",
+//     title: "LMS Dashboard",
+//     description:
+//       "A learning management dashboard with course navigation, assignments, quizzes, and student progress.",
+//     tech: ["React", "Tailwind CSS"],
+//     link: "#contact",
+//   },
+//   {
+//     number: "02",
+//     title: "Users REST API",
+//     description:
+//       "A backend API with user registration, login, JWT authentication, validation, and database integration.",
+//     tech: ["Node.js", "Express", "MySQL"],
+//     link: "#contact",
+//   },
+//   {
+//     number: "03",
+//     title: "Product Management API",
+//     description:
+//       "A structured REST API for creating, retrieving, and managing products with database queries.",
+//     tech: ["Express", "MySQL", "REST API"],
+//     link: "#contact",
+//   },
+// ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [skill, setskill] = useState([])
+  const [links, setlinks] = useState([])
+  const [project, setProject] = useState([])
+  async function handleSkill() {
+    try {
+      const data = await Faq()
+      console.log(data)
+      setskill(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "Skills", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
-  ];
+  useEffect(() => {
+    handleSkill()
+  }, [])
+
+
+  async function handleLinkds() {
+    try {
+      const data = await Navlink()
+      setlinks(data)
+    } catch (error) {
+
+    }
+  }
+
+  useEffect(() => {
+    handleLinkds()
+  }, [])
+
+  async function handleproject() {
+    try {
+      const data = await projectapi()
+      console.log(data)
+      setProject(data)
+    } catch (error) {
+
+    }
+  }
+
+  useEffect(() => {
+    handleproject()
+  }, [])
+  // const navLinks = [
+  //   { label: "Home", href: "#home" },
+  //   { label: "About", href: "#about" },
+  //   { label: "Skills", href: "#skills" },
+  //   { label: "Projects", href: "#projects" },
+  //   { label: "Contact", href: "#contact" },
+  // ];
 
   return (
     <div className="min-h-screen scroll-smooth bg-[#080d18] text-slate-100">
@@ -57,7 +106,7 @@ function App() {
           </a>
 
           <div className="hidden items-center gap-7 md:flex">
-            {navLinks.map((link, index) => (
+            {links?.map((link, index) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -88,7 +137,7 @@ function App() {
 
         {menuOpen && (
           <div className="border-t border-white/10 px-6 py-4 md:hidden">
-            {navLinks.map((link) => (
+            {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -230,15 +279,15 @@ function App() {
               </p>
 
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                {skills.map((skill) => (
+                {skill?.map((skills) => (
                   <div
-                    key={skill.title}
+                    key={skills.title}
                     className="rounded-2xl border border-white/10 bg-[#101a2b] p-5 transition hover:border-blue-400/40"
                   >
-                    <h3 className="text-lg font-bold">{skill.title}</h3>
+                    <h3 className="text-lg font-bold">{skills.title}</h3>
 
                     <div className="mt-4 flex flex-wrap gap-2">
-                      {skill.items.map((item) => (
+                      {skills.items.split(",").map((item) => (
                         <span
                           key={item}
                           className="rounded-lg bg-white/5 px-3 py-2 text-xs text-slate-300"
@@ -271,28 +320,28 @@ function App() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {project.map((projects) => (
               <article
-                key={project.number}
+                key={projects.id}
                 className="group rounded-2xl border border-white/10 bg-[#0d1524] p-6 transition duration-300 hover:-translate-y-2 hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-950/30"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-4xl font-black text-blue-500/40">
-                    {project.number}
+                    {projects.id}
                   </span>
                   <span className="text-2xl text-blue-400">↗</span>
                 </div>
 
                 <h3 className="mt-7 text-xl font-bold transition group-hover:text-blue-400">
-                  {project.title}
+                  {projects.title}
                 </h3>
 
                 <p className="mt-3 min-h-24 leading-7 text-slate-400">
-                  {project.description}
+                  {projects.Discription}
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
+                  {projects.tech.split(",").map((tech) => (
                     <span
                       key={tech}
                       className="rounded-full bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300"
@@ -303,7 +352,7 @@ function App() {
                 </div>
 
                 <a
-                  href={project.link}
+                  href={projects.link}
                   className="mt-7 inline-block text-sm font-semibold text-slate-200 hover:text-blue-400"
                 >
                   Discuss Project →
