@@ -171,7 +171,7 @@ function App() {
 
             <div className="relative flex h-72 w-72 flex-col items-center justify-center rounded-[2rem] border border-blue-400/20 bg-gradient-to-br from-slate-800 to-slate-950 shadow-2xl shadow-blue-900/30 sm:h-96 sm:w-96">
 
-              <img src="/src/assets/wali1.png" alt="" />
+              <img src="/src/assets/wali1.png" alt="" width={100}/>
 
             </div>
           </div>
