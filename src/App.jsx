@@ -163,9 +163,9 @@ function App() {
             </span>
 
             <h1 className="mt-7 text-4xl font-black leading-tight tracking-tight sm:text-5xl lg:text-7xl">
-              Wania
+              Waleed
               <span className="block bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
-                Sheik
+                Siddiqui
               </span>
             </h1>
 
