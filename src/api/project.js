@@ -8,6 +8,6 @@ export const projectapi = async () => {
     console.log(res, "faqs");
     return res.data.data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };

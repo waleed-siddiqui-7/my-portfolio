@@ -8,6 +8,6 @@ export const Faq = async () => {
     console.log(res, "faqs");
     return res.data.products;
   } catch (error) {
-    alert(error);
+     console.log(error)
   }
 };
