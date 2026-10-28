@@ -1,45 +1,9 @@
 import { useEffect } from "react";
 import { useState } from "react";
-// import { Faq } from "./api/skill";
+import { Faq } from "./api/skill";
 import { Navlink } from "./api/navlinks";
 import { projectapi } from "./api/project";
-// const skills = [
-//   { title: "Frontend", items: ["HTML", "CSS", "JavaScript", "React", "Tailwind CSS"] },
-//   { title: "Backend", items: ["Node.js", "Express.js", "Python", "FastAPI"] },
-//   { title: "Database", items: ["MySQL", "PostgreSQL", "SQL"] },
-//   { title: "Tools", items: ["Git", "GitHub", "VS Code", "REST APIs"] },
-// ];
 
-
-
-
-
-// const projects = [
-//   {
-//     number: "01",
-//     title: "LMS Dashboard",
-//     description:
-//       "A learning management dashboard with course navigation, assignments, quizzes, and student progress.",
-//     tech: ["React", "Tailwind CSS"],
-//     link: "#contact",
-//   },
-//   {
-//     number: "02",
-//     title: "Users REST API",
-//     description:
-//       "A backend API with user registration, login, JWT authentication, validation, and database integration.",
-//     tech: ["Node.js", "Express", "MySQL"],
-//     link: "#contact",
-//   },
-//   {
-//     number: "03",
-//     title: "Product Management API",
-//     description:
-//       "A structured REST API for creating, retrieving, and managing products with database queries.",
-//     tech: ["Express", "MySQL", "REST API"],
-//     link: "#contact",
-//   },
-// ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -48,7 +12,7 @@ function App() {
   const [project, setProject] = useState([])
   async function handleSkill() {
     try {
-      const data = []
+      const data = await Faq()
       console.log(data)
       setskill(data)
     } catch (error) {
@@ -87,13 +51,6 @@ function App() {
   useEffect(() => {
     handleproject()
   }, [])
-  // const navLinks = [
-  //   { label: "Home", href: "#home" },
-  //   { label: "About", href: "#about" },
-  //   { label: "Skills", href: "#skills" },
-  //   { label: "Projects", href: "#projects" },
-  //   { label: "Contact", href: "#contact" },
-  // ];
 
   return (
     <div className="min-h-screen scroll-smooth bg-[#080d18] text-slate-100">
