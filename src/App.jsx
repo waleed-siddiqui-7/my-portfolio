@@ -202,7 +202,7 @@ function App() {
 
             <div className="relative w-full max-w-xs overflow-hidden rounded-[2rem] border border-blue-400/20 bg-gradient-to-br from-slate-800 to-slate-950 p-3 shadow-2xl shadow-blue-900/30 sm:max-w-sm">
               <img
-                src="/public/waleed2.jpg"
+                src="/waleed2.jpg"
                 alt="Waleed Siddiqui"
                 className="aspect-[4/5] w-full rounded-2xl object-cover object-top"
               />
