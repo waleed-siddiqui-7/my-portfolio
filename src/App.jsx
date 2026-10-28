@@ -137,7 +137,7 @@ function App() {
 
         {menuOpen && (
           <div className="border-t border-white/10 px-6 py-4 md:hidden">
-            {links.map((link) => (
+            {links?.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -281,13 +281,13 @@ function App() {
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 {skill?.map((skills) => (
                   <div
-                    key={skills.title}
+                    key={skills?.title}
                     className="rounded-2xl border border-white/10 bg-[#101a2b] p-5 transition hover:border-blue-400/40"
                   >
                     <h3 className="text-lg font-bold">{skills.title}</h3>
 
                     <div className="mt-4 flex flex-wrap gap-2">
-                      {skills.items.split(",").map((item) => (
+                      {skills?.items.split(",").map((item) => (
                         <span
                           key={item}
                           className="rounded-lg bg-white/5 px-3 py-2 text-xs text-slate-300"
@@ -320,7 +320,7 @@ function App() {
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {project.map((projects) => (
+            {project?.map((projects) => (
               <article
                 key={projects.id}
                 className="group rounded-2xl border border-white/10 bg-[#0d1524] p-6 transition duration-300 hover:-translate-y-2 hover:border-blue-400/40 hover:shadow-xl hover:shadow-blue-950/30"
@@ -341,7 +341,7 @@ function App() {
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {projects.tech.split(",").map((tech) => (
+                  {projects?.tech.split(",").map((tech) => (
                     <span
                       key={tech}
                       className="rounded-full bg-blue-500/10 px-3 py-1.5 text-xs text-blue-300"
