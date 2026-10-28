@@ -170,26 +170,9 @@ function App() {
             <div className="absolute h-64 w-64 rounded-full bg-blue-600/20 blur-3xl sm:h-80 sm:w-80" />
 
             <div className="relative flex h-72 w-72 flex-col items-center justify-center rounded-[2rem] border border-blue-400/20 bg-gradient-to-br from-slate-800 to-slate-950 shadow-2xl shadow-blue-900/30 sm:h-96 sm:w-96">
-              <div className="mb-5 flex h-28 w-28 items-center justify-center rounded-3xl border border-blue-400/30 bg-blue-500/10 text-6xl font-black text-blue-400 sm:h-36 sm:w-36 sm:text-7xl">
-                {"</>"}
-              </div>
 
-              <p className="text-xl font-bold">Building the Web</p>
-              <p className="mt-2 text-sm text-slate-400">
-                Learn. Build. Improve.
-              </p>
+              <img src="/src/assets/wali1.png" alt="" />
 
-              <div className="absolute -left-4 top-10 rounded-xl border border-white/10 bg-slate-900 px-4 py-3 shadow-xl sm:-left-8">
-                <p className="text-sm font-semibold text-blue-300">
-                  Clean Code
-                </p>
-              </div>
-
-              <div className="absolute -right-3 bottom-12 rounded-xl border border-white/10 bg-slate-900 px-4 py-3 shadow-xl sm:-right-8">
-                <p className="text-sm font-semibold text-cyan-300">
-                  Creative Solutions
-                </p>
-              </div>
             </div>
           </div>
         </section>
