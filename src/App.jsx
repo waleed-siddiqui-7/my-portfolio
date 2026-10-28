@@ -48,7 +48,7 @@ function App() {
   const [project, setProject] = useState([])
   async function handleSkill() {
     try {
-      const data = "test"
+      const data = []
       console.log(data)
       setskill(data)
     } catch (error) {
