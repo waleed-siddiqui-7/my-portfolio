@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { Faq } from "./api/skill";
+// import { Faq } from "./api/skill";
 import { Navlink } from "./api/navlinks";
 import { projectapi } from "./api/project";
 // const skills = [
