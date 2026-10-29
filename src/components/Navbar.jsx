@@ -1,103 +1,101 @@
-
+import { Navlink } from "../api/navlinks";
 import { useState } from "react";
-
+import { useEffect } from "react";
 function Navbar() {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [activeLink, setActiveLink] = useState("/");
-    const links = [
-        { name: "Home", href: "/" },
-        { name: "About", href: "/about" },
-        { name: "Contact", href: "/contact" },
-    ];
+    const [links, setLinks] = useState([]);
+    useEffect(() => {
+        async function handleLinks() {
+            try {
+                const data = await Navlink();
+                setLinks(data);
+            } catch (error) {
+                console.error("Navigation API Error:", error);
+            }
+        }
+
+        handleLinks();
+    }, []);
 
     return (
-        <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/95 text-white shadow-xl backdrop-blur-lg">
-            <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        <div>
 
-                {/* Logo */}
-                <a href="/" className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 text-2xl font-black shadow-lg shadow-blue-500/20">
-                        C
-                    </div>
+            <header className="sticky top-0 z-50 border-b border-white/10 bg-[#080d18]/95 backdrop-blur-xl">
+                <nav className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-10">
+                    <a
+                        href="#home"
+                        onClick={closeMenu}
+                        className="flex min-w-0 items-center gap-2 sm:gap-3"
+                    >
+                        <span className="shrink-0 text-2xl font-black text-blue-500 sm:text-3xl">
+                            WS
+                        </span>
 
-                    <span className="text-2xl font-bold tracking-tight">
-                        Console<span className="text-sky-400">Dot</span>
-                    </span>
-                </a>
+                        <span className="truncate text-sm font-bold sm:text-lg">
+                            Waleed Siddiqui
+                        </span>
+                    </a>
 
-                <ul className="hidden items-center gap-2 md:flex">
-                    {links.map((link) => (
-                        <li key={link.name}>
+                    {/* Desktop Navigation */}
+                    <div className="hidden items-center gap-5 lg:flex xl:gap-7">
+                        {links?.map((link, index) => (
                             <a
+                                key={link.label}
                                 href={link.href}
-                                onClick={() => setActiveLink(link.href)}
-                                className={`block rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-300 ${activeLink === link.href
-                                    ? "bg-sky-400/10 text-sky-400"
-                                    : "text-slate-300 hover:bg-white/5 hover:text-sky-400"
+                                className={`whitespace-nowrap text-sm transition hover:text-blue-400 ${index === 0 ? "text-blue-400" : "text-slate-300"
                                     }`}
                             >
-                                {link.name}
+                                {link.label}
                             </a>
-                        </li>
-                    ))}
-                </ul>
+                        ))}
+                    </div>
 
-                {/* Mobile Menu Button */}
-                <button
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    className="rounded-lg border border-white/10 p-2 text-slate-200 transition hover:bg-white/10 md:hidden"
-                    aria-label="Toggle navigation menu"
-                    aria-expanded={menuOpen}
-                >
-                    {menuOpen ? (
-                        <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M6 18L18 6M6 6l12 12"
-                            />
-                        </svg>
-                    ) : (
-                        <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
-                    )}
-                </button>
-            </div>
+                    {/* Desktop Contact Button */}
+                    <a
+                        href="#contact"
+                        className="hidden rounded-full border border-blue-500 px-5 py-2.5 text-sm font-semibold transition hover:bg-blue-600 lg:block"
+                    >
+                        Let's Talk
+                    </a>
 
-            {/* Mobile Navigation */}
-            {menuOpen && (
-                <ul className="space-y-1 border-t border-white/10 px-6 py-4 md:hidden">
-                    {links.map((link) => (
-                        <li key={link.name}>
+                    {/* Mobile Menu Button */}
+                    <button
+                        type="button"
+                        onClick={() => setMenuOpen((prev) => !prev)}
+                        aria-label={menuOpen ? "Close navigation" : "Open navigation"}
+                        aria-expanded={menuOpen}
+                        className="shrink-0 rounded-lg border border-white/10 px-3 py-2 text-xl transition hover:bg-white/5 lg:hidden"
+                    >
+                        {menuOpen ? "✕" : "☰"}
+                    </button>
+                </nav>
+
+                {/* Mobile Navigation */}
+                {menuOpen && (
+                    <div className="border-t border-white/10 px-4 py-3 lg:hidden">
+                        <div className="mx-auto flex max-w-7xl flex-col gap-1">
+                            {links?.map((link) => (
+                                <a
+                                    key={link.label}
+                                    href={link.href}
+                                    onClick={closeMenu}
+                                    className="rounded-lg px-4 py-3 text-sm text-slate-300 transition hover:bg-white/5 hover:text-blue-400"
+                                >
+                                    {link.label}
+                                </a>
+                            ))}
+
                             <a
-                                href={link.href}
-                                onClick={() => setMenuOpen(false)}
-                                className="block rounded-lg px-4 py-3 text-slate-300 transition hover:bg-white/5 hover:text-sky-400"
+                                href="#contact"
+                                onClick={closeMenu}
+                                className="mt-2 rounded-lg bg-blue-600 px-4 py-3 text-center text-sm font-semibold transition hover:bg-blue-500"
                             >
-                                {link.name}
+                                Let's Talk
                             </a>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </nav>
+                        </div>
+                    </div>
+                )}
+            </header>
+        </div>
     );
 }
 
