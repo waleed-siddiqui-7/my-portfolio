@@ -204,7 +204,7 @@ function App() {
               <img
                 src="/waleed2.jpg"
                 alt="Waleed Siddiqui"
-                className="aspect-[4/5] w-full rounded-2xl object-cover object-top"
+                className="aspect-[4/5] w-full rounded-2xl object-cover float object-top transition-transform duration-700 ease-out group-hover:scale-110"
               />
 
               <div className="px-3 py-4 text-center">
