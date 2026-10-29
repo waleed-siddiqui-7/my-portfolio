@@ -6,7 +6,7 @@ import Footer from "./components/Footer";
 import { projectapi } from "./api/project";
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
+
   const [skill, setSkill] = useState([]);
 
   const [project, setProject] = useState([]);
@@ -42,10 +42,7 @@ function App() {
     handleProject();
   }, []);
 
-  // Close mobile menu when a link is clicked
-  function closeMenu() {
-    setMenuOpen(false);
-  }
+
 
   return (
     <div className="min-h-screen overflow-x-clip scroll-smooth bg-[#080d18] text-slate-100">

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 function Navbar() {
     const [links, setLinks] = useState([]);
+    const [menuOpen, setMenuOpen] = useState(false);
     useEffect(() => {
         async function handleLinks() {
             try {
@@ -15,6 +16,11 @@ function Navbar() {
 
         handleLinks();
     }, []);
+
+    // Close mobile menu when a link is clicked
+    function closeMenu() {
+        setMenuOpen(false);
+    }
 
     return (
         <div>
