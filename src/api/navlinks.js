@@ -6,7 +6,7 @@ export const Navlink = async () => {
       "https://express-backend-mocha.vercel.app/linkapi",
     );
     console.log(res, "faqs");
-    return res.data.products;
+    return res.data.data;
   } catch (error) {
     console.log(error);
   }
