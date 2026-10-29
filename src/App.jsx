@@ -304,9 +304,7 @@ function App() {
               Say Hello ✉
             </a>
 
-            <p className="mt-4 break-words text-xs text-slate-500 sm:text-sm">
-              Replace the example email with your real email address.
-            </p>
+           
           </div>
         </section>
       </main>
