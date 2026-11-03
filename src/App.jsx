@@ -3,7 +3,7 @@ import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Portfolio from "./pages/Portfolio";
 import AdminLOGIN from "./pages/Adminlogin";
 import Dashboard from "./pages/Dashboard";
-
+import Project from "./pages/Project";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -13,6 +13,12 @@ function App() {
       <Route
         path="/"
         element={<Portfolio onAdminClick={() => navigate("/login")} />}
+      />
+      <Route
+        path="/projects"
+        element={
+          isLoggedIn ? <Project /> : <Navigate to="/login" replace />
+        }
       />
 
       <Route
@@ -54,6 +60,7 @@ function App() {
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
+
 }
 
 export default App;

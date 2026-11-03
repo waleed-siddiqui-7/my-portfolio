@@ -32,7 +32,7 @@ function Portfolio({ onAdminClick }) {
 
     return (
         <div className="min-h-screen overflow-x-clip scroll-smooth bg-[#080d18] text-slate-100">
-            <Navbar onAdminClick={onAdminClick} />
+            <Navbar onAdminClick={onAdminClick} variant="portfolio" />
 
             <main>
 
@@ -263,7 +263,7 @@ function Portfolio({ onAdminClick }) {
                     </div>
                 </section>
 
-           
+
                 <section
                     id="contact"
                     className="scroll-mt-20 border-t border-white/10 bg-[#0c1321]"
