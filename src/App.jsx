@@ -4,6 +4,7 @@ import Portfolio from "./pages/Portfolio";
 import AdminLOGIN from "./pages/Adminlogin";
 import Dashboard from "./pages/Dashboard";
 import Project from "./pages/Project";
+import Skill from "./pages/Skill";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
@@ -18,6 +19,12 @@ function App() {
         path="/projects"
         element={
           isLoggedIn ? <Project /> : <Navigate to="/login" replace />
+        }
+      />
+      <Route
+        path="/skill"
+        element={
+          isLoggedIn ? <Skill /> : <Navigate to="/login" replace />
         }
       />
 

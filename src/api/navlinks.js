@@ -3,7 +3,7 @@ import axios from "axios";
 export const Navlink = async () => {
   try {
     const res = await axios.get(
-      "https://express-backend-mocha.vercel.app/linkapi",
+      `${import.meta.env.VITE_APP_BASE_URL}/linkapi`,
     );
     console.log(res, "faqs");
     return res.data.data;

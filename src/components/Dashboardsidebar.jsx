@@ -17,6 +17,10 @@ export default function Dashboardsidebar() {
         navigate("/projects")
     }
 
+ function gotoSkill() {
+        navigate("/skill")
+    }
+
     return (
         <div className="relative ">
 
@@ -44,7 +48,7 @@ export default function Dashboardsidebar() {
                     <div>
                         <Award className='cursor-pointer' />
                     </div>
-                    <div className={` cursor-pointer ${side ? "" : "hidden"}`}>
+                    <div className={` cursor-pointer ${side ? "" : "hidden"}`} onClick={gotoSkill}>
                         Skills
                     </div>
                 </div>
