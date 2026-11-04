@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { FolderKanban } from 'lucide-react';
 import { Award } from 'lucide-react';
-import { TabsDemo } from './tabs';
+
 import { useNavigate } from 'react-router-dom';
 
 export default function Dashboardsidebar() {
