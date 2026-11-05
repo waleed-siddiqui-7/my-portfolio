@@ -7,6 +7,8 @@ import { Trash } from 'lucide-react';
 import { Deleteprojectapi } from "@/api/deleteprojects";
 import Footer from '@/components/Footer';
 
+
+
 export default function Project() {
   const [project, setProject] = useState([])
 
@@ -15,6 +17,10 @@ export default function Project() {
     console.log(data)
     setProject(data)
   }
+
+  useEffect(() => {
+    handleProject()
+  }, [])
 
   async function handleDelete(id) {
 
@@ -25,9 +31,10 @@ export default function Project() {
     setProject((prevProjects) => prevProjects.filter((p) => p.id !== id))
   }
 
-  useEffect(() => {
-    handleProject()
-  }, [])
+
+
+
+  
 
   return (
     <div className='min-h-screen bg-[#080d18] '>
@@ -45,6 +52,7 @@ export default function Project() {
                 <th className="px-6 py-4">Description</th>
                 <th className="px-6 py-4">Tech</th>
                 <th className="px-6 py-4">Link</th>
+                <th className="px-6 py-4">Update</th>
                 <th className="px-6 py-4 text-center">Delete</th>
               </tr>
             </thead>
@@ -73,6 +81,11 @@ export default function Project() {
                       <a href={data.link} target="_blank" rel="noreferrer" className="text-sky-400 underline-offset-4 hover:text-sky-300 hover:underline" >
                         Visit
                       </a>
+                    </td>
+                    <td className="px-6 py-4 text-center">
+
+                      <PopoverDemo variant="update" id={data.id}/>
+
                     </td>
                     <td className="px-6 py-4 text-center">
                       <button

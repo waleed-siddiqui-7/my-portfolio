@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 import { Faq } from '@/api/skill';
 import { Deleteskillapi } from '@/api/deleteskill';
 export default function Skill() {
-    
+
     const [skill, setSkill] = useState([])
     async function handleSkill() {
         const data = await Faq()
@@ -33,7 +33,7 @@ export default function Skill() {
         <div className='min-h-screen bg-[#080d18] '>
             <Navbar />
             <div className='flex ml-200 justify-center items-center pt-10 gap-2'>
-                <PopoverDemo />
+                <PopoverDemo variant="skill" />
             </div>
             <div>
                 <div className="mt-10 w-full mb-30 overflow-x-auto rounded-xl border border-white/10 bg-white/5 shadow-lg ">
@@ -43,8 +43,8 @@ export default function Skill() {
                                 <th className="px-6 py-4">ID</th>
                                 <th className="px-6 py-4">Title</th>
                                 <th className="px-6 py-4">Items</th>
-                                
-                          
+                                <th className="px-8 py-4">update</th>
+
                                 <th className="px-6 py-4 text-center">Delete</th>
                             </tr>
                         </thead>
@@ -54,7 +54,7 @@ export default function Skill() {
                                     <tr key={data.id} className="transition-colors duration-200 hover:bg-white/10" >
                                         <td className="px-6 py-4 font-medium text-gray-400">{data.id}</td>
                                         <td className="px-6 py-4 font-semibold">{data.title}</td>
-                                      
+
                                         <td className="px-6 py-4">
                                             <div className="flex flex-wrap gap-2">
                                                 {String(data.items)
@@ -66,7 +66,16 @@ export default function Skill() {
                                                     ))}
                                             </div>
                                         </td>
-                                       
+
+                                        <td className="px-6 py-4 text-center">
+                                            <button
+
+                                                className="rounded-lg cursor-pointer bg-gray-500/20 px-3 py-1.5 text-xs font-medium text-white-400 transition hover:gray-red-500 hover:text-white"
+                                            >
+                                                <PopoverDemo variant="updateskill" id={data.id} />
+                                            </button>
+                                        </td>
+
                                         <td className="px-6 py-4 text-center">
                                             <button
                                                 onClick={() => handleDelete(data.id)}
