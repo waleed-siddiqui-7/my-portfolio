@@ -10,10 +10,13 @@ import { Updateprojectapi } from '@/api/updateproject';
 import { Updateskillapi } from "@/api/updateskill";
 
 export function PopoverDemo({ variant, id }) {
-    const [title, setTitle] = useState("");
-    const [discription, setDescription] = useState("");
-    const [tech, setTech] = useState("");
-    const [link, setLink] = useState("");
+    const [formData, setFormData] = useState({
+        title: "",
+        discription: "",
+        tech: "",
+        link: ""
+    });
+
     const [items, setItem] = useState("");
     const [titleskill, settitleskill] = useState("");
 
@@ -22,21 +25,27 @@ export function PopoverDemo({ variant, id }) {
 
     async function handleAddProject(e) {
         e.preventDefault();
-        const data = await Createprojectapi(title, discription, tech, link);
+        const data = await Createprojectapi(formData.title, formData.discription, formData.tech, formData.link);
+
         console.log(data);
+        setFormData("")
         alert("project add suceesfully")
     }
+
 
     async function handleaddskill(e) {
         e.preventDefault();
         const data = await Createskillapi(items, titleskill);
         console.log(data);
+        setItem("")
+        settitleskill("")
+        alert("project add suceesfully")
     }
 
     async function hadleUpdate(e) {
         e.preventDefault();
         console.log(id);
-        const update = await Updateprojectapi(id, title, discription, tech, link);
+        const update = await Updateprojectapi(id, formData.title, formData.discription, formData.tech, formData.link);
         console.log(update);
         alert("project Updated suceesfully")
     }
@@ -44,7 +53,7 @@ export function PopoverDemo({ variant, id }) {
     async function hadleUpdateskill(e) {
         e.preventDefault();
         console.log(id);
-        const update = await Updateskillapi(id, title, items);
+        const update = await Updateskillapi(id, formData.title, items);
         console.log(update);
         alert("SKILL Updated suceesfully")
     }
@@ -62,19 +71,19 @@ export function PopoverDemo({ variant, id }) {
                         <form onSubmit={handleAddProject} className="flex flex-col gap-3">
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="title">Title:</Label>
-                                <Input id="title" type="text" placeholder="Project title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <Input id="title" type="text" placeholder="Project title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="description">Description:</Label>
-                                <Input id="description" type="text" placeholder="Description" value={discription} onChange={(e) => setDescription(e.target.value)} />
+                                <Input id="description" type="text" placeholder="Description" value={formData.discription} onChange={(e) => setFormData({ ...formData, discription: e.target.value })} />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="tech">Tech:</Label>
-                                <Input id="tech" type="text" placeholder="React, Tailwind, etc." value={tech} onChange={(e) => setTech(e.target.value)} />
+                                <Input id="tech" type="text" placeholder="React, Tailwind, etc." value={formData.tech} onChange={(e) => setFormData({ ...formData, tech: e.target.value })} />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="link">Link:</Label>
-                                <Input id="link" type="text" placeholder="https://..." value={link} onChange={(e) => setLink(e.target.value)} />
+                                <Input id="link" type="text" placeholder="https://..." value={formData.link} onChange={(e) => setFormData({ ...formData, link: e.target.value })} />
                             </div>
                             <Button type="submit" className="mt-2 w-full cursor-pointer">
                                 Add Project
@@ -93,19 +102,21 @@ export function PopoverDemo({ variant, id }) {
                         <form onSubmit={hadleUpdate} className="flex flex-col gap-3">
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="title">Title:</Label>
-                                <Input id="title" type="text" placeholder="Project title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <Input id="title" type="text" placeholder="Project title" name="title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="description">Description:</Label>
-                                <Input id="description" type="text" placeholder="Description" value={discription} onChange={(e) => setDescription(e.target.value)} />
+                                <Input id="description" type="text" placeholder="Description" value={formData.discription} onChange={(e) => setFormData({ ...formData, discription: e.target.value })} />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="tech">Tech:</Label>
-                                <Input id="tech" type="text" placeholder="React, Tailwind, etc." value={tech} onChange={(e) => setTech(e.target.value)} />
+                                <Input id="tech" type="text" name="tech" placeholder="React, Tailwind, etc." value={formData.tech} onChange={(e) => setFormData({ ...formData, tech: e.target.value })} />
                             </div>
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="link">Link:</Label>
-                                <Input id="link" type="text" placeholder="https://..." value={link} onChange={(e) => setLink(e.target.value)} />
+                                <Input id="link" type="text" name="link" placeholder="https://..." value={formData.link}
+                                    onChange={(e) => setFormData({ ...formData, link: e.target.value })}
+                                />
                             </div>
                             <Button type="submit" className="mt-2 w-full cursor-pointer">
                                 Update Project
@@ -147,13 +158,13 @@ export function PopoverDemo({ variant, id }) {
                         <form onSubmit={hadleUpdateskill} className="flex flex-col gap-3">
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="title">Title:</Label>
-                                <Input id="title" type="text" placeholder="Project title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                <Input id="title" type="text" placeholder="Project title" value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} />
                             </div>
 
 
                             <div className="flex flex-col gap-1">
                                 <Label htmlFor="link">Items:</Label>
-                                <Input id="link" type="text" placeholder="https://..." value={items} onChange={(e) => setItem(e.target.value)} />
+                                <Input id="link" type="text" placeholder="items..." value={items} onChange={(e) => setItem(e.target.value)} />
                             </div>
                             <Button type="submit" className="mt-2 w-full cursor-pointer">
                                 Update Skill

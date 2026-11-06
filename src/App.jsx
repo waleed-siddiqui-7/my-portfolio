@@ -18,13 +18,13 @@ function App() {
       <Route
         path="/projects"
         element={
-          isLoggedIn ? <Project /> : <Navigate to="/login" replace />
+          <Project />
         }
       />
       <Route
         path="/skill"
         element={
-          isLoggedIn ? <Skill /> : <Navigate to="/login" replace />
+          <Skill />  
         }
       />
 
